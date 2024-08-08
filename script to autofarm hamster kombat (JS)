@@ -1,0 +1,37 @@
+
+{
+let button=document.querySelector(".user-tap-button")
+let zero=false
+function tick()
+{
+    try{
+        const en=document.querySelector(".user-tap-energy > p")
+        if (en)
+        {
+          const enstr=en.innerText
+          const curen=Number(enstr.split('/')[0])
+          const mx=Number(enstr.split('/')[1])
+          if (!zero)
+          {
+              button.dispatchEvent(new PointerEvent('pointerup'))
+              button.dispatchEvent(new PointerEvent('pointerup'))
+              button.dispatchEvent(new PointerEvent('pointerup'))
+              button.dispatchEvent(new PointerEvent('pointerup'))
+          }
+          if (curen<=10)
+          {
+              zero=true
+          }
+          if(curen>=mx-10)
+          {
+              zero=false
+          }
+       }
+    } catch(e){
+        console.log(e)
+    }
+     
+    setTimeout(tick,100*Math.random()+50)
+}
+tick()
+}
